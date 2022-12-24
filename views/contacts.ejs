@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./templates/head.ejs') %>
+<body>
+    <%- include('./templates/header.ejs') %>
+    <h1>Contacts</h1>
+    <main>
+        <% if (contacts.length){ %>
+            <% contacts.forEach(({link, name})=>{ %>
+                <li>
+                    <a target="_blank" href="<%= link %>"><%= name %></a>
+                </li>
+           <% }) %>
+           <% } %>
+    </main>
+    <script type="module" src="./scriptsForHTML/script.js"></script>
+</body>
+</html>

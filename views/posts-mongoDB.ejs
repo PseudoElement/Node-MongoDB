@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./templates/head.ejs') %>
+  <body>
+    <%- include('./templates/header.ejs') %>
+    <main>
+      <form
+        id="sweatForm"
+        class="form-post"
+        method="post"
+        action="/add-post-in-mongoDB"
+        target="dummyframe"
+      >
+        <input required type="text" name="author" placeholder="Your name..." />
+        <textarea
+          required
+          placeholder="Write your post..."
+          name="text"
+          id=""
+          cols="30"
+          rows="5"
+        ></textarea>
+        <button type="submit">Submit</button>
+      </form>
+
+      <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+    </main>
+    <script type="module" src="./scriptsForHTML/script.js"></script>
+    <script type="module" src="./scriptsForHTML/posts-mongoDB.js"></script>
+  </body>
+</html>
