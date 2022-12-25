@@ -7,12 +7,12 @@ function createEl(tag = "div", className) {
 const allPosts = [];
 const main = document.querySelector("main");
 class Post {
-  constructor(opt = { author, text, date, time, id }) {
-    this.id = opt.id;
-    this.author = opt.author;
-    this.text = opt.text;
-    this.date = opt.date;
-    this.time = opt.time;
+  constructor({ author, text, date, time, id }) {
+    this.id = id;
+    this.author = author;
+    this.text = text;
+    this.date = date;
+    this.time = time;
     this.renderPost();
     this.addPost();
     this.deletePost();
@@ -31,8 +31,7 @@ class Post {
     this.Date_TimeWrapper = createEl("div", "Date_TimeWrapper");
     this.Date_TimeWrapper.append(this.postDate, this.postTime);
     this.form = createEl("form", "deleteForm");
-    this.form.method = "post";
-    this.form.action = "/post-delete";
+    // this.form.method = "post";
     this.form.target = "dummyframe";
     this.deleteBtn = createEl("button", "deleteBtn");
     this.deleteBtn.type = "submit";
@@ -69,4 +68,4 @@ class Post {
     });
   }
 }
-export { Post, allPosts };
+export { Post, allPosts, createEl, main };

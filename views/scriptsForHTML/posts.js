@@ -56,15 +56,16 @@ function getMaxId() {
 submit.addEventListener("click", (event) => {
   event.preventDefault();
   if (!postAuthor.value || !postText.value) return;
-  const newPost = new Post({
-    author: postAuthor.value,
-    text: postText.value,
-    date: new Date().toLocaleDateString(),
-    time: new Date().toLocaleTimeString(),
-    id: getMaxId(),
-  });
+  // const newPost = new Post({
+  //   author: postAuthor.value,
+  //   text: postText.value,
+  //   date: new Date().toLocaleDateString(),
+  //   time: new Date().toLocaleTimeString(),
+  //   id: getMaxId(),
+  // });
   sendRequest();
-  setTimeout(() => {
+  location.reload();//без перезагрузки страницы можно добавлять новый экземпляр класса
+  setTimeout(() => {// с одновременной отправкой пост запроса
     postAuthor.value = "";
     postText.value = "";
   }, 100);

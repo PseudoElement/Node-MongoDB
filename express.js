@@ -10,7 +10,7 @@ const cors = require("cors");
 const createPath = (page) => path.join(__dirname, `./views/${page}.ejs`);
 const dataBase = "mongodb://127.0.0.1:27017/my-first-db";
 mongoose.set("strictQuery", true);
-mongoose
+mongoose //connection DataBase
   .connect(dataBase, { useNewUrlParser: true, useUnifiedTopology: true }) //parameters in {} are unnesessary
   .then((res) => console.log("Connected to DataBase"))
   .catch((e) => console.error(`My error: ${e}`));
@@ -38,12 +38,12 @@ app.get("/posts-mongodb", (req, res) => {
   const title = "Sending in mongoDB";
   res.render(createPath("posts-mongoDB"), { title });
 });
-app.get('/data-from-db', (req, res)=>{
+app.get("/data-from-db", (req, res) => {
   postModule.post
-  .find()
-  .then((posts) => res.send(posts))
-  .catch((e) => res.render(createPath("error"), { title: "Error" }));
-})
+    .find()
+    .then((posts) => res.send(posts))
+    .catch((e) => res.render(createPath("error"), { title: "Error" }));
+});
 app.post("/add-post-in-mongoDB", (req, res) => {
   const { text, author, time, date } = req.body;
   const post = new postModule.post({ author, text, time, date });
@@ -54,9 +54,14 @@ app.post("/add-post-in-mongoDB", (req, res) => {
     })
     .catch((e) => res.render(createPath("error"), { title: "Error" }));
 });
-//////////////DEND DATA TO INNER JSON-FILE
+app.post("/delete-post-mongoDB", (req, res) => {
+  console.log(`REQuest BODY: ${JSON.stringify(req.body)}`);
+  postModule.post
+    .findByIdAndDelete(req.body.id)
+    .then((result) => res.sendStatus(200));
+});
+//////////////SEND DATA TO INNER JSON-FILE
 app.post("/post-delete", (req, res) => {
-  console.log(req.body);
   let data = fs.readFileSync("./views/scriptsForHTML/postsData.json", "utf-8");
   let parsedData = JSON.parse(data);
   parsedData.array.forEach((post) => {
@@ -81,7 +86,7 @@ app.post("/post-data", (req, res) => {
     reqBODY.id = maxID;
     reqBODY.date = new Date().toLocaleDateString();
     reqBODY.time = new Date().toLocaleTimeString();
-    parsedData["array"].push(reqBODY);
+    parsedData.array.push(reqBODY);
     return JSON.stringify(parsedData);
   }
   const jsonData = getJson(req.body, parsedData, maxID);
