@@ -4,7 +4,8 @@
   "description": "",
   "main": "buffer-stream.js",
   "scripts": {
-    "dev": "nodemon ./express.js"
+    "dev": "nodemon ./express.js",
+    "build": "parcel ./express.js"
   },
   "keywords": [],
   "author": "Me",
@@ -18,7 +19,8 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "mongoose": "^6.8.1"
+    "mongoose": "^6.8.1",
+    "parcel": "^2.8.2"
   },
   "engines": {
     "node": "18.12.1"
