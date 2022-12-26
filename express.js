@@ -1,21 +1,23 @@
 const express = require("express");
+require("dotenv").config();
+const chalk = require("chalk"); //change color of text in console
+const errorMessage = chalk.bgKeyword("purple").redBright;
+const successMessage = chalk.bgKeyword("green").white;
 const postsRoutes = require("./routes/post-routes.js");
 const postApiRoutes = require("./routes/api-post-routes.js");
 const contactsRoutes = require("./routes/contact-routes.js");
 const mongoose = require("mongoose");
 const createPath = require("./utils/create-path.js");
 const app = express();
-const PORT = 80;
 const cors = require("cors");
-const dataBase = "mongodb://127.0.0.1:27017/my-first-db";
 mongoose.set("strictQuery", true);
 mongoose //connection DataBase
-  .connect(dataBase, { useNewUrlParser: true, useUnifiedTopology: true }) //parameters in {} are unnesessary
-  .then((res) => console.log("Connected to DataBase"))
-  .catch((e) => console.error(`My error: ${e}`));
+  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }) //parameters in {} are unnesessary
+  .then((res) => console.log(successMessage("Connected to DataBase")))
+  .catch((e) => console.error(`My error: ${errorMessage(e)}`));
 app.set("view engine", "ejs");
-app.listen(PORT, (err) => {
-  err ? console.log(err) : console.log(`Port ${PORT} is working...`);
+app.listen(process.env.PORT, (err) => {
+  err ? console.log(err) : console.log(`Port ${process.env.PORT} is working...`);
 });
 app.use(express.static("middleware")); //делает папку видимой для браузера
 app.use(express.static("views"));
