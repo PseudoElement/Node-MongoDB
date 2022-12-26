@@ -1,7 +1,6 @@
 import { url } from "./script.js";
 const linkHere = document.querySelector(`.span-link`);
 const a = document.querySelector(`h2 a`);
-console.log(a);
 linkHere.setAttribute("target", "_blank");
 linkHere.addEventListener("mouseover", (event) => {
   event.target.style.color = "yellow";
