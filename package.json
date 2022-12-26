@@ -1,0 +1,26 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "buffer-stream.js",
+  "scripts": {
+    "dev": "nodemon ./express.js"
+  },
+  "keywords": [],
+  "author": "Me",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "mongoose": "^6.8.1"
+  },
+  "engines": {
+    "node": "18.12.1"
+  }
+}
