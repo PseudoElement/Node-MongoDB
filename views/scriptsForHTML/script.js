@@ -6,9 +6,17 @@ const api = document.querySelectorAll("header h3")[5];
 const posts_mongoDB = document.querySelectorAll("header h3")[4];
 const posts = document.querySelectorAll("header h3")[3];
 const divWrapper = document.createElement("div");
+const signUp = document.querySelector(".signUp");
+const logIn = document.querySelector(".logIn");
 export const url = `http://localhost:80`;
 divWrapper.className = "divWrapper";
 main.append(divWrapper);
+signUp.addEventListener("click", () => {
+  location.replace(url + "/sign-up");
+});
+logIn.addEventListener("click", () => {
+  location.replace(url + "/authorization");
+});
 posts_mongoDB.addEventListener("click", () => {
   location.replace(url + "/posts-mongodb");
 });
@@ -47,4 +55,4 @@ fetch(url + "/api")
   setFavicon.setAttribute("href", favImg);
   headTitle.append(setFavicon);
 })("../templates/icons8-grinch-48.png");
-export {divWrapper};
+export { divWrapper };

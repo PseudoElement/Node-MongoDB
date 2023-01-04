@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./templates/headForRegistr.ejs') %>
+<body>
+    <h1>Registration</h1>
+    <div class="form-wrapper">
+        <form class="registration" method="post">
+            <input required id="username" type="text" placeholder="Username" name="username">
+            <input required id="password" type="password" placeholder="Password" name="password">
+            <button class="registrBtn" type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script type="module" src="./scriptsForHTML/registrScript.js"></script>
+</body>
+</html>

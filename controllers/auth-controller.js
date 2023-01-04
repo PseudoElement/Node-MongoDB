@@ -18,6 +18,7 @@ class AuthController {
       if (!errors.isEmpty()) {
         return res.status(400).json({ message });
       }
+      console.log(`Registration: ${JSON.stringify(req.body)}`)
       const { username, password } = req.body;
       const candidate = await User.findOne({ username });
       if (candidate) {
@@ -39,6 +40,7 @@ class AuthController {
   }
   async login(req, res) {
     try {
+      console.log(`LOGIN: ${JSON.stringify(req.body)}`)
       const { username, password } = req.body;
       const user = await User.findOne({ username });
       if (!user) {

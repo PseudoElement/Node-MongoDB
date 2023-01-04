@@ -38,6 +38,21 @@ h3:hover{
     color: red;
     text-decoration: underline;
 }
+/*AUTHORIZATION*/
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.buttons button, .sendBtn{
+    font-size: 30px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(70, 172, 165);
+}
+
+/*/////////////////////////////////////////////////////////////////////*/
 h1{
     border: 2px solid black;
     padding: 30px;

@@ -14,6 +14,14 @@ router.get("/posts", (req, res) => {
   const title = "Posts";
   res.render(createPath("posts"), { title });
 });
+router.get('/authorization', (req, res)=>{
+  const title = 'Log In';
+  res.render(createPath('login'), {title})
+})
+router.get('/sign-up', (req, res)=>{
+  const title = 'Registration';
+  res.render(createPath('registr'), {title})
+})
 ////////////SEND DATA TO MONGODB
 router.get("/posts-mongodb", renderPosts);
 router.get("/data-from-db", sendDataFromDB);
