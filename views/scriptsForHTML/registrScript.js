@@ -15,7 +15,7 @@ function sendRequest(URL) {
   }
 registrBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    if (!inputUsername.value || !inputPassword.value) return;
+    // if (!inputUsername.value || !inputPassword.value) return;
     sendRequest(`${url}/auth/registration`);
-    location.replace(url);
+    // location.replace(url);
   });
