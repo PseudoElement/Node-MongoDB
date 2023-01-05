@@ -43,7 +43,6 @@ class AuthController {
   }
   async login(req, res) {
     try {
-      console.log(`LOGIN: ${JSON.stringify(req.body)}`);
       const { username, password } = req.body;
       const user = await User.findOne({ username });
       if (!user) {
@@ -52,9 +51,8 @@ class AuthController {
           .json({ message: `User ${username} is not found.` });
       }
       const validPassword = bcrypt.compareSync(password, user.password); //check password
-      console.log(`Is valid password: ${validPassword}`);
       if (!validPassword) {
-        return res.status(400).redirect('/error');//////////<-------СТАТУС 400 есть, но не перенаправляет на страницу с ошибкой
+        return res.status(400).send({status: 400, message: 'Invalid Password.'});
       }
       const token = generateAccessToken(user._id, user.roles);
       return res.json({ token });
