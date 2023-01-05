@@ -52,13 +52,15 @@ class AuthController {
       }
       const validPassword = bcrypt.compareSync(password, user.password); //check password
       if (!validPassword) {
-        return res.status(400).send({status: 400, message: 'Invalid Password.'});
+        return res
+          .status(400)
+          .send({ status: 400, message: "Invalid Password." });
       }
       const token = generateAccessToken(user._id, user.roles);
-      return res.json({ token });
+      return res.status(200).send({ token, username, status: 200 });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Login error" });
+      res.status(400).json({ status: 400, message: "Login error" });
     }
   }
   async getUsers(req, res) {

@@ -40,7 +40,13 @@ router.get("/api", (req, res) => {
   res.end();
 });
 router.get("/", (req, res) => {
+  const {token, username} = req.body;
+  console.log(`TOKEN: ${token}`)
+  console.log(`Username: ${username}`)
   const title = "Home page";
+  // res.setHeader("Content-Type", "text/html");
+  // res.write(`<h2>${username}</h2>`);
+  // res.send(token);
   res.render(createPath("index3"), { title });
 });
 router.get("/info", (req, res) => {

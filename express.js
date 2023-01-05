@@ -40,9 +40,10 @@ app.use(
   })
 );
 app.use((req, res) => {
-  console.log(`REQUEST-BODY-ERROR:` + JSON.stringify(req.body));
+  const {message} = req.body;
+  const status = req.body.status || 500;
   const title = "Error";
   // res.write(req.body.message);
-  res.status(404).render(createPath("error"), { title });
+  res.status(Number(status)).render(createPath("error"), { title, message, status });
   //      ^ ====  res.statusCode = 404;
 });
