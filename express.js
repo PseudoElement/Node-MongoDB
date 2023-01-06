@@ -41,6 +41,7 @@ app.use(
 );
 app.use((req, res) => {
   const {message} = req.body;
+  console.log('ERROR-BODY' + JSON.stringify(req.body))/////<----------------ВОТ СЮДА, вместо url/
   const status = req.body.status || 500;
   const title = "Error";
   // res.write(req.body.message);

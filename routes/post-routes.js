@@ -1,11 +1,11 @@
 const express = require("express");
 const {
   renderPosts,
-  sendDataFromDB,///destruction of Object
+  sendDataFromDB, ///destruction of Object
   savePostInDB,
   deletePost,
   deletePostJSON,
-  addPostJSON
+  addPostJSON,
 } = require("../controllers/controllersMDB.js");
 const fs = require("fs");
 const router = express.Router();
@@ -14,14 +14,14 @@ router.get("/posts", (req, res) => {
   const title = "Posts";
   res.render(createPath("posts"), { title });
 });
-router.get('/authorization', (req, res)=>{
-  const title = 'Log In';
-  res.render(createPath('login'), {title})
-})
-router.get('/sign-up', (req, res)=>{
-  const title = 'Registration';
-  res.render(createPath('registr'), {title})
-})
+router.get("/authorization", (req, res) => {
+  const title = "Log In";
+  res.render(createPath("login"), { title });
+});
+router.get("/sign-up", (req, res) => {
+  const title = "Registration";
+  res.render(createPath("registr"), { title });
+});
 ////////////SEND DATA TO MONGODB
 router.get("/posts-mongodb", renderPosts);
 router.get("/data-from-db", sendDataFromDB);
@@ -40,9 +40,9 @@ router.get("/api", (req, res) => {
   res.end();
 });
 router.get("/", (req, res) => {
-  const {token, username} = req.body;
-  console.log(`TOKEN: ${token}`)
-  console.log(`Username: ${username}`)
+  const { token, username } = req.body;
+  console.log(`TOKEN: ${token}`);//////а сюда прилетает undefined
+  console.log(`Username: ${username}`);
   const title = "Home page";
   // res.setHeader("Content-Type", "text/html");
   // res.write(`<h2>${username}</h2>`);
@@ -53,6 +53,7 @@ router.get("/info", (req, res) => {
   res.redirect("/contacts");
 });
 router.get("/about-us", (req, res) => {
+  console.log(`ABOUT US REQUEST:` + JSON.stringify(req.body));
   const title = "About us";
   res.render(createPath("about-us"), { title });
 });

@@ -1,5 +1,4 @@
 const User = require("../models/User.js");
-const express = require("express");
 const Role = require("../models/Role.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -48,7 +47,7 @@ class AuthController {
       if (!user) {
         return res
           .status(400)
-          .json({ message: `User ${username} is not found.` });
+          .json({ message: `User ${username} is not found.`, status: 400 });
       }
       const validPassword = bcrypt.compareSync(password, user.password); //check password
       if (!validPassword) {

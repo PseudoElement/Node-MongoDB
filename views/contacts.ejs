@@ -3,9 +3,9 @@
     <%- include('./templates/head.ejs') %>
 <body>
     <%- include('./templates/header.ejs') %>
-    <h1>Contacts</h1>
     <main>
         <%- include('./templates/authorization.ejs') %>
+        <h1>Contacts</h1>
         <% if (contacts.length){ %>
             <% contacts.forEach(({link, name})=>{ %>
                 <li>
