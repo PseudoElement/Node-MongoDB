@@ -40,14 +40,15 @@ router.get("/api", (req, res) => {
   res.end();
 });
 router.get("/", (req, res) => {
+  const title = "Home page";
+  res.render(createPath("index3"), { title });
+});
+router.post("/", (req, res) => {
   const { token, username } = req.body;
-  console.log(`TOKEN: ${token}`);//////а сюда прилетает undefined
+  console.log(`TOKEN: ${token}`); //////а сюда прилетает undefined
   console.log(`Username: ${username}`);
   const title = "Home page";
-  // res.setHeader("Content-Type", "text/html");
-  // res.write(`<h2>${username}</h2>`);
-  // res.send(token);
-  res.render(createPath("index3"), { title });
+  res.render(createPath("indexForAuthorizedUsers"), { title, username }, true);
 });
 router.get("/info", (req, res) => {
   res.redirect("/contacts");
