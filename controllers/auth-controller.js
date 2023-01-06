@@ -17,14 +17,15 @@ class AuthController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ message: "Can't be empty" });
+        return res.status(400).json({ message: "Can't be empty", status: 400 });
       }
       console.log(`Registration: ${JSON.stringify(req.body)}`);
       const { username, password } = req.body;
       const candidate = await User.findOne({ username });
-      console.log(`Candidate: ${candidate}`);
       if (candidate) {
-        return res.status(400).write("User already exists.");
+        return res
+          .status(400)
+          .json({ message: `User ${username} already exists.`, status: 400 });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const userRole = await Role.findOne({ value: "USER" });
@@ -34,7 +35,11 @@ class AuthController {
         roles: [userRole.value],
       });
       await user.save();
-      return res.json({ message: "User is added successfully." });
+      return res.json({
+        message: "User is added successfully.",
+        username,
+        status: 200,
+      });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Registration error" });

@@ -45,10 +45,11 @@ router.get("/", (req, res) => {
 });
 router.post("/", (req, res) => {
   const { token, username } = req.body;
-  console.log(`TOKEN: ${token}`); //////а сюда прилетает undefined
+  console.log(`TOKEN: ${token}`); 
   console.log(`Username: ${username}`);
   const title = "Home page";
-  res.render(createPath("indexForAuthorizedUsers"), { title, username }, true);
+  // res.redirect('/contacts');
+  // res.render(createPath("indexForAuthorizedUsers"), { title, username });
 });
 router.get("/info", (req, res) => {
   res.redirect("/contacts");

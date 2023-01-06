@@ -8,6 +8,14 @@ const posts = document.querySelectorAll("header h3")[3];
 const divWrapper = document.createElement("div");
 const signUp = document.querySelector(".signUp");
 const logIn = document.querySelector(".logIn");
+const buttons = document.querySelector(`.buttons`);
+window.addEventListener('DOMContentLoaded', ()=>{
+    const username = localStorage.getItem('Username') || '';
+    const userIcon = document.createElement('div')
+    userIcon.textContent = username;
+    userIcon.style.fontSize = `30px`;
+    buttons.prepend(userIcon);
+})
 export const url = `http://localhost:80`;
 divWrapper.className = "divWrapper";
 main.append(divWrapper);
